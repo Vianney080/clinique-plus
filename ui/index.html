@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tableau de bord administrateur</title>
+    <link rel="stylesheet" href="./design-system.css" />
+  </head>
+  <body>
+    <header class="appbar">
+      <div class="appbar-inner container" style="padding-inline:0">
+        <div class="brand"><span class="dot"></span> SantéPro Admin</div>
+        <div class="row">
+          <button class="btn btn-ghost btn-sm" id="openCreate">Ajouter un rendez-vous</button>
+          <button class="btn btn-primary btn-sm">Nouveau médecin</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1 class="page-title">Tableau de bord administrateur</h1>
+      <p class="page-subtitle">Gérez les utilisateurs, médecins et rendez-vous</p>
+
+      <section class="grid cols-3">
+        <article class="card">
+          <div class="card__header">
+            <h2 class="card__title">Utilisateurs</h2>
+            <button class="btn btn-primary btn-sm">Ajouter un utilisateur</button>
+          </div>
+          <div class="card__body">
+            <div class="list">
+              <div class="list-item">
+                <div>
+                  <div class="item-title">dominique <span class="badge info">patient</span></div>
+                  <div class="item-sub">dominiquedzreke@gmail.com</div>
+                </div>
+                <div class="row">
+                  <button class="btn btn-ghost btn-sm">Modifier</button>
+                  <button class="btn btn-danger btn-sm">Supprimer</button>
+                </div>
+              </div>
+
+              <div class="list-item">
+                <div>
+                  <div class="item-title">hakimi <span class="badge info">admin</span></div>
+                  <div class="item-sub">hakimi@gmail.com</div>
+                </div>
+                <div class="row">
+                  <button class="btn btn-ghost btn-sm">Modifier</button>
+                  <button class="btn btn-danger btn-sm">Supprimer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__header">
+            <h2 class="card__title">Médecins</h2>
+            <button class="btn btn-primary btn-sm">Ajouter un médecin</button>
+          </div>
+          <div class="card__body space-y">
+            <div class="list-item">
+              <div>
+                <div class="item-title">NeymarJR <span class="item-sub">cardiologue</span></div>
+                <div class="mt-2">
+                  <div class="item-sub">Disponibilités</div>
+                  <div class="item-sub">Lundi: 09:00, 10:00, 11:00</div>
+                  <div class="item-sub">Mardi: 09:30, 10:30, 11:30</div>
+                </div>
+              </div>
+              <div class="row">
+                <button class="btn btn-ghost btn-sm">Modifier</button>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div>
+                <div class="item-title">Jacques <span class="item-sub">pédiatre</span></div>
+                <div class="mt-2">
+                  <div class="item-sub">Mardi: 10:00, 14:00</div>
+                  <div class="item-sub">Jeudi: 08:00, 13:00</div>
+                </div>
+              </div>
+              <div class="row">
+                <button class="btn btn-ghost btn-sm">Modifier</button>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__header">
+            <h2 class="card__title">Rendez-vous</h2>
+            <button class="btn btn-primary btn-sm" id="openModal">Ajouter un rendez-vous</button>
+          </div>
+          <div class="card__body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Heure</th>
+                  <th>Patient</th>
+                  <th>Médecin</th>
+                  <th>Note</th>
+                  <th>Statut</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025-08-12</td>
+                  <td>11:30</td>
+                  <td>komla</td>
+                  <td>NeymarJR</td>
+                  <td class="item-sub">problème de coeur</td>
+                  <td><span class="badge success">Programmé</span></td>
+                  <td class="row">
+                    <button class="btn btn-ghost btn-sm">Modifier</button>
+                    <button class="btn btn-danger btn-sm">Annuler</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2025-08-14</td>
+                  <td>13:00</td>
+                  <td>vianney</td>
+                  <td>Jacques</td>
+                  <td class="item-sub">maux de tête</td>
+                  <td><span class="badge success">Programmé</span></td>
+                  <td class="row">
+                    <button class="btn btn-ghost btn-sm">Modifier</button>
+                    <button class="btn btn-danger btn-sm">Annuler</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none">
+      <div class="modal" role="document">
+        <div class="modal__header">
+          <h3 id="modalTitle" class="modal__title">Nouveau rendez-vous</h3>
+          <button class="btn btn-ghost btn-sm" id="closeModal">Fermer</button>
+        </div>
+        <form class="modal__body">
+          <div class="field">
+            <label class="label" for="date">Date</label>
+            <input class="input" id="date" type="date" required />
+          </div>
+          <div class="field">
+            <label class="label" for="time">Heure</label>
+            <input class="input" id="time" type="time" required />
+          </div>
+          <div class="field">
+            <label class="label" for="patient">Patient</label>
+            <input class="input" id="patient" placeholder="Nom du patient" />
+          </div>
+          <div class="field">
+            <label class="label" for="doctor">Médecin</label>
+            <select id="doctor">
+              <option>NeymarJR</option>
+              <option>Jacques</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="note">Note</label>
+            <textarea id="note" rows="3" placeholder="Motif..."></textarea>
+          </div>
+        </form>
+        <div class="modal__footer">
+          <button class="btn btn-ghost">Annuler</button>
+          <button class="btn btn-success">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./modal.js"></script>
+  </body>
+  </html>
+
