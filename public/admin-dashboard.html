@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tableau de bord administrateur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/design-system.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title">Tableau de bord administrateur, Lamine</h1>
+        <p class="page-subtitle">Gérez les utilisateurs, médecins et rendez-vous</p>
+      </header>
+
+      <section class="grid grid--cols-3">
+        <!-- Utilisateurs -->
+        <article class="card">
+          <div class="card__header">
+            <h3 class="card__title">Utilisateurs</h3>
+            <div class="section-actions">
+              <button class="btn btn--primary btn--sm" data-modal-target="#modal-user">Ajouter un utilisateur</button>
+            </div>
+          </div>
+          <div class="card__body">
+            <div class="item">
+              <div>
+                <div class="item__title">dominique <span class="muted">(patient)</span></div>
+                <div class="item__subtitle">dominiquedzreke@gmail.com</div>
+              </div>
+              <div class="item__actions">
+                <button class="btn btn--ghost btn--sm">Modifier</button>
+                <button class="btn btn--danger btn--sm">Supprimer</button>
+              </div>
+            </div>
+            <div class="item">
+              <div>
+                <div class="item__title">hakimi <span class="muted">(admin)</span></div>
+                <div class="item__subtitle">hakimi@gmail.com</div>
+              </div>
+              <div class="item__actions">
+                <button class="btn btn--ghost btn--sm">Modifier</button>
+                <button class="btn btn--danger btn--sm">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Médecins -->
+        <article class="card">
+          <div class="card__header">
+            <h3 class="card__title">Médecins</h3>
+            <div class="section-actions">
+              <button class="btn btn--primary btn--sm" data-modal-target="#modal-doctor">Ajouter un médecin</button>
+            </div>
+          </div>
+          <div class="card__body stack-md">
+            <div class="stack-sm" style="border-bottom:1px dashed var(--border); padding-bottom:10px;">
+              <div class="item__title">NeymarJR <span class="muted">- cardiologue</span></div>
+              <div class="muted" style="font-weight:600;">Disponibilités</div>
+              <div class="muted">Lundi: 09:00, 10:00, 11:00</div>
+              <div class="muted">Mardi: 09:30, 10:30, 11:30</div>
+              <div class="muted">Mercredi: 08:45, 10:30, 10:45</div>
+              <div class="item__actions" style="margin-top:6px;">
+                <button class="btn btn--ghost btn--sm">Modifier</button>
+                <button class="btn btn--danger btn--sm">Supprimer</button>
+              </div>
+            </div>
+            <div class="stack-sm">
+              <div class="item__title">Jacques <span class="muted">- pédiatre</span></div>
+              <div class="muted" style="font-weight:600;">Disponibilités</div>
+              <div class="muted">Mardi: 10:00, 14:00, 15:10, 16:20</div>
+              <div class="muted">Jeudi: 08:00, 13:00, 15:10, 17:00</div>
+              <div class="item__actions" style="margin-top:6px;">
+                <button class="btn btn--ghost btn--sm">Modifier</button>
+                <button class="btn btn--danger btn--sm">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rendez-vous -->
+        <article class="card">
+          <div class="card__header">
+            <h3 class="card__title">Rendez-vous</h3>
+            <div class="section-actions">
+              <button class="btn btn--primary btn--sm" data-modal-target="#modal-appointment">Ajouter un rendez-vous</button>
+            </div>
+          </div>
+          <div class="card__body stack-md">
+            <div class="stack-sm" style="border-bottom:1px dashed var(--border); padding-bottom:10px;">
+              <div class="item__title">2025-08-12 à 11:30</div>
+              <div class="muted">komla → NeymarJR</div>
+              <div class="muted">problème de coeur</div>
+              <span class="badge badge--success">Programmé</span>
+              <div class="item__actions" style="margin-top:6px;">
+                <button class="btn btn--ghost btn--sm">Modifier</button>
+                <button class="btn btn--danger btn--sm">Annuler</button>
+              </div>
+            </div>
+            <div class="stack-sm">
+              <div class="item__title">2025-08-14 à 13:00</div>
+              <div class="muted">vianney → Jacques</div>
+              <div class="muted">mon fils est malade</div>
+              <span class="badge badge--success">Programmé</span>
+              <div class="item__actions" style="margin-top:6px;">
+                <button class="btn btn--ghost btn--sm">Modifier</button>
+                <button class="btn btn--danger btn--sm">Annuler</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="modal-user" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-user-title">
+      <div class="modal__overlay" data-modal-close></div>
+      <div class="modal__dialog" role="document">
+        <div class="modal__header">
+          <h3 class="modal__title" id="modal-user-title">Ajouter un utilisateur</h3>
+          <button class="icon-btn" aria-label="Fermer" data-modal-close>✕</button>
+        </div>
+        <div class="modal__content">
+          <form class="form">
+            <div class="form__row">
+              <div>
+                <label for="user-name">Nom</label>
+                <input id="user-name" class="input" type="text" placeholder="Ex: Dominique" />
+              </div>
+              <div>
+                <label for="user-role">Rôle</label>
+                <select id="user-role" class="select">
+                  <option value="patient">Patient</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="user-email">Email</label>
+              <input id="user-email" class="input" type="email" placeholder="nom@domaine.com" />
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" data-modal-close>Annuler</button>
+          <button class="btn btn--primary">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-doctor" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-doctor-title">
+      <div class="modal__overlay" data-modal-close></div>
+      <div class="modal__dialog" role="document">
+        <div class="modal__header">
+          <h3 class="modal__title" id="modal-doctor-title">Ajouter un médecin</h3>
+          <button class="icon-btn" aria-label="Fermer" data-modal-close>✕</button>
+        </div>
+        <div class="modal__content">
+          <form class="form">
+            <div class="form__row">
+              <div>
+                <label for="doctor-name">Nom</label>
+                <input id="doctor-name" class="input" type="text" placeholder="Ex: Jacques" />
+              </div>
+              <div>
+                <label for="doctor-spec">Spécialité</label>
+                <input id="doctor-spec" class="input" type="text" placeholder="Ex: cardiologue" />
+              </div>
+            </div>
+            <div>
+              <label for="doctor-notes">Disponibilités</label>
+              <textarea id="doctor-notes" class="textarea" rows="3" placeholder="Ex: Lundi 09:00-11:00; Mardi 09:30-11:30"></textarea>
+              <p class="help-text">Utilisez un format clair pour chaque jour.</p>
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" data-modal-close>Annuler</button>
+          <button class="btn btn--primary">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-appointment" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-appointment-title">
+      <div class="modal__overlay" data-modal-close></div>
+      <div class="modal__dialog" role="document">
+        <div class="modal__header">
+          <h3 class="modal__title" id="modal-appointment-title">Ajouter un rendez-vous</h3>
+          <button class="icon-btn" aria-label="Fermer" data-modal-close>✕</button>
+        </div>
+        <div class="modal__content">
+          <form class="form">
+            <div class="form__row">
+              <div>
+                <label for="apt-date">Date</label>
+                <input id="apt-date" class="input" type="date" />
+              </div>
+              <div>
+                <label for="apt-time">Heure</label>
+                <input id="apt-time" class="input" type="time" />
+              </div>
+            </div>
+            <div class="form__row">
+              <div>
+                <label for="apt-patient">Patient</label>
+                <input id="apt-patient" class="input" type="text" placeholder="Nom du patient" />
+              </div>
+              <div>
+                <label for="apt-doctor">Médecin</label>
+                <input id="apt-doctor" class="input" type="text" placeholder="Nom du médecin" />
+              </div>
+            </div>
+            <div>
+              <label for="apt-notes">Motif</label>
+              <textarea id="apt-notes" class="textarea" rows="3" placeholder="Description du problème"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" data-modal-close>Annuler</button>
+          <button class="btn btn--primary">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/ui.js"></script>
+  </body>
+  </html>
+
